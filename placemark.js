@@ -1,1 +1,3 @@
-console.log('placemark.js connected to html');
+document.addEventListener('click', function(e){
+    console.log(e.target.innerText);
+})
