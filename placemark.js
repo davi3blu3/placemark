@@ -1,4 +1,4 @@
-document.addEventListener('click', function(e){
+function captureWord() {
     var s = window.getSelection();
     var range = s.getRangeAt(0);
     var node = s.anchorNode;
@@ -12,5 +12,10 @@ document.addEventListener('click', function(e){
     } while (range.toString().indexOf(' ') == -1 && range.toString().trim() != '' && range.endOffset < node.length);
     var str = range.toString().trim();
 
-    console.log(str);
+    return str;
+}
+
+document.addEventListener('click', function(){
+    var selectedWord = captureWord();
+    console.log(selectedWord);
 })
