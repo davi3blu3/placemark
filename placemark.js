@@ -19,19 +19,13 @@ function getWordAndIndex(range, node) {
     return [str, range.startOffset];
 }
 
-function testWord(txt, ind, len) {
-
-    // get element text
-    console.log(txt);
-    // get index
-    console.log(ind);
-    // get word length
-    console.log(len);
-    // return string that should match getWordAndIndex, hopefully!
-    console.log(txt.substring(ind, ind + len));
-}
-
 function handleClick(e) {
+    // remove span with class 'placemark', but leave innerText
+    spanList = document.querySelectorAll('.placemark');
+    spanList.forEach(function(span){
+        span.parentNode.innerHTML = removeSpan(span.parentNode.innerHTML);
+    })
+
     // capture click location
     var s = window.getSelection();
     var range = s.getRangeAt(0);
@@ -41,14 +35,11 @@ function handleClick(e) {
     var wordAndIndex = getWordAndIndex(range, node);
     var word = wordAndIndex[0];
     var index = wordAndIndex[1];
+    console.log(word);
 
-    // testing
-    testWord(s.anchorNode.data, index, word.length);
-
-
-
-    // var newhtml = e.target.innerHTML.replace(str, addSpan(str));
-    // e.target.innerHTML = newhtml;
+    // add span word clicked within element
+    var newhtml = e.target.innerHTML.replace(word, addSpan(word));
+    e.target.innerHTML = newhtml;
 }
 
 document.addEventListener('click', function(e){
