@@ -7,6 +7,8 @@ function getWordAndIndex(range, node) {
         range.setStart(node, (range.startOffset - 1));        
     }
 
+    // BUG: Clicking twice in the same p element is now wrapping the whole p element text in a span tag
+
     // remove leading space if not first word in element
     if (range.startOffset != 0) range.setStart(node, range.startOffset + 1);
     
